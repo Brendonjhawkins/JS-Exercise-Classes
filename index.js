@@ -42,9 +42,33 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = []
+  }
+  eat(someFood){
+    if(this.stomach.length < 10){
+      this.stomach.push(someFood);
+  }
+}
+  poop() {
+    this.stomach = [];
+  } 
+  toString(){
+    return `${this.name}, ${this.age} `
+  }
 }
 
+const Brendon = new Person(`Brendon`, 27);
+
+Brendon.eat(`spaghetti`);
+Brendon.eat(`Banana`);
+Brendon.eat(`apple`);
+
+console.log(Brendon);
+console.log(Brendon.stomach)
+console.log(Brendon.toString())
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
@@ -60,8 +84,31 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, mpg){
+    this.model = model;
+    this.milesPerGallon = mpg;
+    this.tank = 0;
+    this.odometer = 0
+  }
+  fill(gallons){
+    return this.tank += gallons
+  }
+  drive(distance){
+    const driveableMiles = this.tank * this.milesPerGallon;
+    if(distance <= driveableMiles){
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - (distance / this.milesPerGallon);
+    }else{
+      this.odometer = this.odometer + driveableMiles;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles`
+    }
+  }
 }
+
+const toyota = new Car(`toyota`, 50);
+
+console.log(toyota.drive(100))
 
 /*
   TASK 3
@@ -76,7 +123,12 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  
+  constructor(name, age, location){
+    this.name = name;
+    this.age = age;
+    this.location = location;
+  }
+
 }
 
 /*
